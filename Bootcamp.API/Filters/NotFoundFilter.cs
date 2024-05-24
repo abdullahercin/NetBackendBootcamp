@@ -1,6 +1,7 @@
 using Bootcamp.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Serilog;
 
 namespace Bootcamp.API.Filters;
 
@@ -20,6 +21,7 @@ public class NotFoundFilter<T>(IGenericRepository<T> repository) : Attribute, IA
         if (hasEntity) return;
 
         var errorMessage = $"{id} Id numaralý {typeof(T).Name} bulunamadý.";
+        Log.Error(errorMessage);
         var responseModel = ResponseModelDto<NoContent>.Fail(errorMessage);
         context.Result = new NotFoundObjectResult(responseModel);
     }

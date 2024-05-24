@@ -5,11 +5,13 @@ VisualStudioVersion = 17.10.34902.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bootcamp.API", "Bootcamp.API\Bootcamp.API.csproj", "{5EAD918B-62D1-4620-8327-685F79632533}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootcamp.Domain", "Bootcamp.Domain\Bootcamp.Domain.csproj", "{E35FBAC0-470B-4DE5-8B28-09043A9AEC81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bootcamp.Domain", "Bootcamp.Domain\Bootcamp.Domain.csproj", "{E35FBAC0-470B-4DE5-8B28-09043A9AEC81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootcamp.Service", "Bootcamp.Service\Bootcamp.Service.csproj", "{EEA6895A-E95E-49FE-9634-2490EC4B8C11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bootcamp.Service", "Bootcamp.Service\Bootcamp.Service.csproj", "{EEA6895A-E95E-49FE-9634-2490EC4B8C11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootcamp.Repository", "Bootcamp.Repository\Bootcamp.Repository.csproj", "{0845E9E8-8E53-4399-9653-7A672DC1888A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bootcamp.Repository", "Bootcamp.Repository\Bootcamp.Repository.csproj", "{0845E9E8-8E53-4399-9653-7A672DC1888A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootcamp.SeriLog", "Bootcamp.SeriLog\Bootcamp.SeriLog.csproj", "{65F35A58-C86F-445E-8DC6-59044F06D1A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{0845E9E8-8E53-4399-9653-7A672DC1888A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0845E9E8-8E53-4399-9653-7A672DC1888A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0845E9E8-8E53-4399-9653-7A672DC1888A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65F35A58-C86F-445E-8DC6-59044F06D1A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65F35A58-C86F-445E-8DC6-59044F06D1A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65F35A58-C86F-445E-8DC6-59044F06D1A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65F35A58-C86F-445E-8DC6-59044F06D1A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
