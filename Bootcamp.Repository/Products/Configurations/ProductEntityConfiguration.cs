@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bootcamp.Domain.Products;
+﻿using Bootcamp.Domain.Products;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -15,7 +10,7 @@ namespace Bootcamp.Repository.Products.Configurations
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
-            builder.Property(x => x.Price).HasPrecision(12, 2);
+            builder.Property(x => x.Price).HasColumnType("decimal(12,2)");
             builder.Property(x => x.Barcode).HasMaxLength(50);
             builder.Property(x => x.CategoryId).IsRequired();
             builder.Property(x => x.VatRate).HasPrecision(5, 2);

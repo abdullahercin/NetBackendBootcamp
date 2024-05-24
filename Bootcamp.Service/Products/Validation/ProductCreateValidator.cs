@@ -14,20 +14,20 @@ namespace Bootcamp.Service.Products.Validation
            
             RuleFor(x => x.Barcode)
                 .MaximumLength(50).WithMessage("Maksimum 50 karakter girilebilir.")
-                .Must(barcode=>productRepository.IsExistBarcode(barcode).Result).WithMessage("Barkod zaten tanımlı.");
+                .Must(barcode=>ExistBarcode(productRepository,barcode)).WithMessage("Barkod zaten tanımlı.");
 
             RuleFor(x => x.CategoryId)
                 .NotEmpty().WithMessage("Kategori seçilmelidir.");
         }
 
-        public bool ExistName(IProductRepository productRepository, string name)
+        private bool ExistName(IProductRepository productRepository, string name)
         {
-            return productRepository.IsExistName(name).Result;
+            return !productRepository.IsExistName(name).Result; //Burada ! işareti varsa false döndürüyoruz.
         }
 
-        public async Task<bool> ExistBarcode(IProductRepository productRepository, string name)
+        private bool ExistBarcode(IProductRepository productRepository, string name)
         {
-            return await productRepository.IsExistName(name);
+            return !productRepository.IsExistBarcode(name).Result; //Burada ! işareti varsa false döndürüyoruz.
         }
     }
 }

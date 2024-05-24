@@ -1,4 +1,6 @@
 ﻿using Bootcamp.API.Controllers;
+using Bootcamp.API.Filters;
+using Bootcamp.Domain.Categories;
 using Bootcamp.Service.Categories;
 using Bootcamp.Service.Categories.DTOs;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +17,7 @@ namespace Bootcamp.API.Categories
             return CreateActionResult(await categoryService.GetAll());
         }
 
+        [ServiceFilter(typeof(NotFoundFilter<Category>))]
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -26,6 +29,20 @@ namespace Bootcamp.API.Categories
         {
             var result = await categoryService.Create(request);
             return CreateActionResult(result, nameof(GetById), new { id = result.Data });
+        }
+
+        [ServiceFilter(typeof(NotFoundFilter<Category>))]
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> UpdateCategory(int id, CategoryUpdateDto request)
+        {
+            return CreateActionResult(await categoryService.Update(id, request));
+        }
+
+        [ServiceFilter(typeof(NotFoundFilter<Category>))]
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> DeleteCategory(int id)
+        {
+            return CreateActionResult(await categoryService.Delete(id));
         }
     }
 }

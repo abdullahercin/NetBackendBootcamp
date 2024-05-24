@@ -16,9 +16,30 @@ namespace Bootcamp.Service.Categories
             return ResponseModelDto<int>.Success(result.Id, HttpStatusCode.Created);
         }
 
-        public async Task<ResponseModelDto<CategoryDto>> GetById(int id)
+        public async Task<ResponseModelDto<NoContent>> Update(int categoryId, CategoryUpdateDto request)
         {
-            var category = await categoryRepository.GetById(id); //Ürünün olup olmadığı filtre ile kontrol ediliyor.
+            var hasCategory= await categoryRepository.GetById(categoryId);
+            hasCategory!.Name= request.Name;
+
+            await categoryRepository.Update(hasCategory);
+            await unitOfWork.CommitAsync();
+            return ResponseModelDto<NoContent>.Success(HttpStatusCode.NoContent);
+        }
+
+        public async Task<ResponseModelDto<NoContent>> Delete(int categoryId)
+        {
+            await categoryRepository.Delete(categoryId);
+            await unitOfWork.CommitAsync();
+            return ResponseModelDto<NoContent>.Success(HttpStatusCode.NoContent);
+        }
+
+        public async Task<ResponseModelDto<CategoryDto>> GetById(int categoryId)
+        {
+            var category = await categoryRepository.GetById(categoryId); 
+            if (category== null)
+            {
+                return ResponseModelDto<CategoryDto>.Fail($"{categoryId} ID numaralı ürün bulunamadı.", HttpStatusCode.NotFound);
+            }
             var categoryDto = mapper.Map<CategoryDto>(category);
             return ResponseModelDto<CategoryDto>.Success(categoryDto);
         }

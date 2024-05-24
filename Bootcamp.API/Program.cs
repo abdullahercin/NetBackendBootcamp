@@ -1,7 +1,7 @@
+using Bootcamp.API.Configurations;
 using Bootcamp.Repository;
-using Bootcamp.Repository.Categories.Configurations;
-using Bootcamp.Repository.Products.Configurations;
-using Bootcamp.Service;
+using Bootcamp.Repository.Configurations;
+using Bootcamp.Service.Configruations;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,21 +14,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-builder.Services.AddFluentValidationAutoValidation();
-
-builder.Services.AddAutoMapper(typeof(ServiceAssembly).Assembly);
-
-builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-
-builder.Services.AddRepositoryServices();
-builder.Services.AddApplicationService();
-
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"),
         optionsBuilder => { optionsBuilder.MigrationsAssembly(typeof(RepositoryAssembly).Assembly.GetName().Name); });
 });
+
+builder.Services.AddFluentValidationAutoValidation(); //fluent validation otomatik validasyonu aktif etmek için
+
+builder.Services.AddRepositoryServices();
+builder.Services.AddApplicationService();
+builder.Services.AddApiServices();
 
 var app = builder.Build();
 

@@ -5,12 +5,14 @@ using Bootcamp.Service.Products.Validation;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Bootcamp.Service
+namespace Bootcamp.Service.Configruations
 {
-    public static class ConfigureServices
+    public static class DependencyInjection
     {
         public static IServiceCollection AddApplicationService(this IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(ServiceAssembly).Assembly);
+
             services.AddScoped<CategoryService>();
             services.AddScoped<ProductService>();
 
